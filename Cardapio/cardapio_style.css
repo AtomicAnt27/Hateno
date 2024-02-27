@@ -110,8 +110,11 @@ h2{
 }
 
 .card-img-top {
-    height: 15rem;
-    border-radius top: ;
+    min-height: 208px;
+    max-height: 208px;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    overflow: hidden;
 }
 
 .card{

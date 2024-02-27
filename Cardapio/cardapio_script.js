@@ -8,3 +8,10 @@ function muda_cardapio(n) {
 
     cardapios[n].classList.remove('hidden');
 }
+
+function refresh(){
+    var cardapios = document.querySelectorAll('.cardapio');
+    cardapios.forEach(cardapio => {
+        cardapio.classList.remove('hidden');
+    });
+}
