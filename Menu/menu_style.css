@@ -83,11 +83,6 @@ p {
   color: #ffffff;
 }
 
-p:hover {
-  cursor: pointer;
-  opacity: 1;
-}
-
 @media (width <1024px){
   body {
     background-image: url("../Images/Brown_mobile_background.jpg");
@@ -101,15 +96,5 @@ p:hover {
   body {
     background-image: url("../Images/Brown_desktop_background.jpg");
     overflow-x: hidden;
-  }
-
-  p {
-    transition: all 200ms linear;
-  }
-
-  p:hover {
-    cursor: pointer;
-    opacity: 1;
-    transition: all 200ms linear;
   }
 }

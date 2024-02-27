@@ -109,10 +109,22 @@ h2{
     margin-bottom: 1rem;
 }
 
+.card-img-top {
+    height: 15rem;
+    border-radius top: ;
+}
+
 .card{
     width: 18rem;
-    height: 27rem;
+    height: 25rem;
+    border-radius: 10px !important; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
 
 @media (width< 1024px){   
     body{
