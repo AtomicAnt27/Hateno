@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face { 
+  font-family: 'HylianSerif';
+  src: url(../Fonts/HyliaSerifBeta-Regular.otf)
+}
+
+header{
+  width: 100vw;
+  height: 4rem;
+  background-color: white;
+  position: fixed;
+  transition: box-shadow 100ms ease-in-out;
+  z-index: 999;
+}
+
+.header-box-shadow{
+  box-shadow: rgba(22, 18, 18, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  background-color: #4db2da;
+}
+
+header > ul {
+  padding: 1rem;
+  gap: 2rem;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  z-index: -111;
+}
+
+.logo_wrap{
+  position: absolute;
+  top: -1rem;
+  left: calc(50vw - 3rem);
+}
+
+.logo_img{
+  width: 6rem;
+  height: auto;
+}
+
+a{
+  font-family: 'HylianSerif';
+  color: black;
+  transition: all 50ms linear;
+  text-decoration-line: none;
+}
+  
+a:hover{
+  color: white;
+  cursor: pointer;
+}
+
+.wrap-everything {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+
+}
+
+.content{
+  height: 40rem;
+  width: 100%;
+  margin-top: 6rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  background-color: antiquewhite;
+  border-radius: 5px;
+}
+
+p {
+  font-family: 'HylianSerif';
+  text-align: center;
+  font-size: 4rem;
+  opacity: 0.8;
+  color: #ffffff;
+}
+
+p:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+@media (width <1024px){
+  body {
+    background-image: url("../Images/Brown_mobile_background.jpg");
+    background-size: contain;
+    transition: all ls linear;
+    overflow-x: hidden;
+  }
+}
+
+@media (width >= 1024px) {
+  body {
+    background-image: url("../Images/Brown_desktop_background.jpg");
+    overflow-x: hidden;
+  }
+
+  p {
+    transition: all 200ms linear;
+  }
+
+  p:hover {
+    cursor: pointer;
+    opacity: 1;
+    transition: all 200ms linear;
+  }
+}

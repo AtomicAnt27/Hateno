@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+@font-face { 
+    font-family: 'HylianSerif';
+    src: url(../Fonts/HyliaSerifBeta-Regular.otf)
+}
+  
+header{
+    width: 100vw;
+    height: 4rem;
+    background-color: white;
+    position: fixed;
+    transition: box-shadow 100ms ease-in-out;
+    z-index: 999;
+}
+  
+.header-box-shadow{
+    box-shadow: rgba(22, 18, 18, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    background-color: #4db2da;
+}
+  
+header > ul {
+    padding: 1rem;
+    gap: 2rem;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    z-index: -111;
+}
+  
+.logo_wrap{
+    position: absolute;
+    top: -1rem;
+    left: calc(50vw - 3rem);
+}
+  
+.logo_img{
+    width: 6rem;
+    height: auto;
+}
+  
+a{
+    font-family: 'HylianSerif';
+    color: black !important;
+    transition: all 50ms linear;
+    text-decoration-line: none !important;
+}
+    
+a:hover{
+    color: white !important;
+    cursor: pointer;
+}
+
+.order_title{
+    font-family: 'HylianSerif';
+    text-align: center;
+}
+
+.wrap-everything {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+  
+}
+
+.content{
+    height: auto;
+    width: 100%;
+    margin-top: 6rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    padding: 1rem;
+    background-color: antiquewhite;
+    border-radius: 5px;
+}
+
+#selects-div{
+   display: none;
+   flex-direction: column;
+   gap: 2vh;
+}
+
+.badge{
+    font-size: 1.4rem !important;
+}
+
+.error-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    min-width: 300px;
+    height: auto;
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: rgb(230, 14, 47);
+    color: rgb(15, 0, 2);
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.error-btn{
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    color: rgb(97, 26, 26);
+}
+
+@media (width< 1024px){   
+    body{
+        background-image: url("../Images/Brown_mobile_background.jpg");
+        background-size: contain;
+        transition: all ls linear;
+        overflow-x: hidden;
+    }
+}
+
+@media (width>= 1024px){
+    body{
+        background-image: url("../Images/Brown_desktop_background.jpg");
+        overflow-x: hidden;
+    }
+}
