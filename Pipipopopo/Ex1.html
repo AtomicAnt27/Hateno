@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="../Pipipopopo/Ex4.html">Voltar</a>
+    <a href="../Pipipopopo/Ex2.html">Próximo</a>
+    <script>
+            var a = prompt("Informe o número A: ");
+            var b = prompt("Informe o número B: ");
+            var c = prompt("Informe o número C: ");
+    
+            var delta = (b * b) + (-4 * a * c)
+    
+            if(delta < 0){
+                alert("Delta menor que 0, resultado impossível!");
+            }
+    
+            if(delta == 0){
+                var res = (b * -1) / (2 * a)
+                alert("Delta igual a 0");
+                alert("Resultado: " + res);
+            }
+    
+            if(delta > 0){
+                var x1 = ((b * -1) + Math.sqrt(delta))/(2 * a)
+                var x2 = ((b * -1) - Math.sqrt(delta))/(2 * a)
+            }
+    
+            if(a == 0){
+                alert("Resultado impossível")
+            } else {
+                alert("Resultado: " + x1);
+                alert("Resultado: " + x2);
+            }
+    </script>
+</body>
+</html>
