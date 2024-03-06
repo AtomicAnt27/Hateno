@@ -16,30 +16,8 @@ function refresh(){
     });
 }
 
-const render = (card) => {
-    var card = $("card");
-    card.innerHTML = "";
+const cardapio = async () => {
+    const cardapio_content = await (await fetch('/content.json')).json()
 
-    var img = document.createElement("img");
-    img.className = "card-text";
-    card.appendChild(img);
-
-    var card_body = document.createElement("div");
-    card_body.className = "card-body";
-    card_body.innerHTML = "";
-    card.appendChild(card_body);
-
-    var title = document.createElement("h5");
-    title.className = "card-title";
-    title.textContent = prova.name;
-    card_body.appendChild(title);
-
-    var text = document.createElement("p");
-    text.className = "card-text";
-    card_body.appendChild(text);
-
-    var cart_button = document.createElement("a");
-    cart_button.className = "btn btn-primary";
-    cart_button.setAttribute('href', "#")
-    card_body.appendChild(cart_button);
+    
 }

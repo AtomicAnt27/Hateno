@@ -32,30 +32,15 @@
 
     <div class="wrap-everything">
 
-        <script>
-
-            var card = document.createElement("div");
-            card.id = "card";
-            card.className = "card";
-            document.body.appendChild(card);
-
-            fetch("content.json")
-                .then((result) => result.json())
-                .then((result) => result.content)
-                .then(render);
-
-        </script>
-
         <div class="content">
             <h1 class="cardapio_title">CARDAPIO</h1>
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input onclick="refresh()" type="radio" class="btn-check" name="cardapio" id="btnradio0"
-                    autocomplete="off">
-                <label class="btn btn-outline-dark" for="btnradio0"><a
-                        href="../Cardapio/cardapio_page.html">+</a></label>
+                    autocomplete="off" checked>
+                <label class="btn btn-outline-dark" for="btnradio0">+</label>
 
                 <input onclick="muda_cardapio(0)" type="radio" class="btn-check" name="cardapio" id="btnradio1"
-                    autocomplete="off" checked>
+                    autocomplete="off">
                 <label class="btn btn-outline-dark" for="btnradio1">Pratos</label>
 
                 <input onclick="muda_cardapio(1)" type="radio" class="btn-check" name="cardapio" id="btnradio2"
@@ -149,8 +134,7 @@
                         <img src="../Images/Recipes/3_Fish_and_Mushroom_Skewer.webp" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Fish and Mushroom Skewer</h5>
-                            <p class="card-text">A simple dish made by cooking skewered fresh fish alongside fragrant
-                                mushrooms.</p>
+                            <p class="card-text">A simple dish made by cooking skewered fresh fish alongside fragrant mushrooms.</p>
                             <a href="#" class="btn btn-primary">+ Adicionar ao pedido</a>
                         </div>
                     </div>
