@@ -1,71 +1,94 @@
+// function muda_cardapio(n) {
+//     var cardapios = document.querySelectorAll('.cardapio');
 
-function muda_cardapio(n) {
-    var cardapios = document.querySelectorAll('.cardapio');
+//     cardapios.forEach(cardapio => {
+//         cardapio.classList.add('hidden');
+//     });
 
-    cardapios.forEach(cardapio => {
-        cardapio.classList.add('hidden');
-    });
+//     cardapios[n].classList.remove('hidden');
+// }
 
-    cardapios[n].classList.remove('hidden');
-}
+// function refresh() {
+//     var cardapios = document.querySelectorAll('.cardapio');
+//     cardapios.forEach(cardapio => {
+//         cardapio.classList.remove('hidden');
+//     });
+// }
 
-function refresh() {
-    var cardapios = document.querySelectorAll('.cardapio');
-    cardapios.forEach(cardapio => {
-        cardapio.classList.remove('hidden');
-    });
-}
+const cardapioRender = async() => {
+    module = await (await fetch("./content.json")).json();
+    console.log(module);
 
-const cardapio = async () => {
-    cardapio_content = await (await fetch('/content.json')).json()
+    wrapEverything = document.createElement('div');
+    wrapEverything.classList.add('wrap-everything');
+    document.body.appendChild(wrapEverything);
 
     contentDiv = document.createElement('div');
     contentDiv.classList.add('content');
-    document.body.appendChild(contentDiv);
+    wrapEverything.appendChild(contentDiv);
 
     var i = -1;
-    cardapio_content.forEach(categoria => {
+    module.forEach(categoria => {
         i += 1;
+    
+        console.log("Categoria: ", categoria.nome, categoria.itens);
 
         cardapioDiv = document.createElement('div');
         cardapioDiv.classList.add('cardapio');
 
-        wrapCards = document.createElement('wrap-cards');
-        wrapCards.classList.add(wrap - cards);
+        wrapCardsDiv = document.createElement('div')
+        wrapCardsDiv.classList.add('wrap-cards')
         categoria.itens.forEach(item => {
+            cardDiv = document.createElement('div')
+            cardDiv.classList.add('card');
 
-            card = document.createElement('div')
-            card.classList.add('card');
+            cardImg = document.createElement('img');
+            cardImg.classList.add('card-img-top');
+            cardImg.src = item.img;
+            cardDiv.appendChild(cardImg);
 
-            img = document.createElement('img');
-            img.classList.add('card-img-top');
-            card.appendChild(img);
+            cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
+            
+            cardTitle = document.createElement('h5');
+            cardTitle.classList.add('card-title');
+            cardTitle.textContent = item.name;
+            cardBody.appendChild(cardTitle);
 
-            card_body = document.createElement('div');
-            card_body.classList.add('card-body');
-            card.appendChild(card_body);
+            cardText = document.createElement('p');
+            cardText.classList.add('card-text');
+            cardText.textContent = item.text;
+            cardBody.appendChild(cardText);
 
-            title = document.createElement('h5');
-            title.classList.add('card-title');
-            title.textContent = prova.name;
-            card_body.appendChild(title);
+            cardButtonGroup = document.createElement('div');
+            cardButtonGroup.classList.add('btn-group');
+            cardButtonGroup.classList.add('btn-group-card');
+            cardButtonGroup.setAttribute('role', 'group');
+            cardButton = document.createElement('a');
+            cardButton.classList.add('btn');
+            cardButton.classList.add('btn-danger');
+            cardButton.onclick = () => {adicionarSacola(item)};
+            cardButtonIcon = document.createElement('span');
+            cardButtonIcon.classList.add('material-symbols-outlined');
+            cardButtonIcon.textContent = "add"
+            cardButton.appendChild(cardButtonIcon);
+            cardButton.innerHTML += "Adicionar na Sacola";
+            cardPriceBadge = document.createElement('div');
+            cardPriceBadge.classList.add('item-price');
+            cardPriceBadge.classList.add('badge');
+            cardPriceBadge.classList.add('text-bg-light');
+            cardPriceBadge.textContent = `R$ ${item.preco.toFixed(2)}`;
+            cardButtonGroup.appendChild(cardButton);
+            cardButtonGroup.appendChild(cardPriceBadge);
+            cardBody.appendChild(cardButtonGroup);
 
-            text = document.createElement('p');
-            text.classList.add('card-text');
-            card_body.appendChild(text);
+            cardDiv.appendChild(cardBody);
 
-            cart_button = document.createElement('a');
-            card_button.classList.add('btn');
-            card_button.classList.add('btn-primary');
-            cart_button.onclick = () => { adicionarPedido() };
-            card_button.textContent = "+ Adicionar ao Pedido";
-            card_body.appendChild(card_button);
-
-            wrapCards.appendChild(card);
+            wrapCardsDiv.appendChild(cardDiv);
         })
-        cardapioDiv.appendChild(wrapCards);
+        cardapioDiv.appendChild(wrapCardsDiv);
+
         contentDiv.appendChild(cardapioDiv);
     })
 }
-
-window.addEventListener('load', cardapio);
+window.addEventListener('load', cardapioRender);
