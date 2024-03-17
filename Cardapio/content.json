@@ -13,70 +13,70 @@
                 "id": 2,
                 "name": "Meat and Mushroom Skewer",
                 "text": "A filling dish made by grilling various mountain ingredients with meat.",
-                "price": "",
+                "price": 13,
                 "img": "../Images/Recipes/2_Meat_and_Mushroom_Skewer.webp"
             },
             {
                 "id": 3,
                 "name": "Fish and Mushroom Skewer",
                 "text": "A simple dish made by cooking skewered fresh fish alongside fragrant mushrooms.",
-                "price": "",
+                "price": 14,
                 "img": "../Images/Recipes/3_Fish_and_Mushroom_Skewer.webp"
             },
             {
                 "id": 4,
                 "name": "Meat Skewer",
                 "text": "",
-                "price": "",
+                "price": 15,
                 "img": "../Images/Recipes/4_Meat_Skewer.webp"
             },
             {
                 "id": 5,
                 "name": "Fish Skewer",
                 "text": "",
-                "price": "",
+                "price": 16,
                 "img": "../Images/Recipes/5_Fish_Skewer.webp"
             },
             {
                 "id": 6,
                 "name": "Seafood Skewer",
                 "text": "",
-                "price": "",
+                "price": 17,
                 "img": "../Images/Recipes/6_Seafood_Skewer.webp"
             },
             {
                 "id": 7,
                 "name": "Copious Meat Skewers",
                 "text": "",
-                "price": "",
+                "price": 11,
                 "img": "../Images/Recipes/7_Copious_Meat_Skewers.webp"
             },
             {
                 "id": 8,
                 "name": "Copious Seafood Skewers",
                 "text": "",
-                "price": "",
+                "price": 12,
                 "img": "../Images/Recipes/8_Copious_Seafood_Skewers.webp"
             },
             {
                 "id": 9,
                 "name": "Steamed Fruit",
                 "text": "",
-                "price": "",
+                "price": 13,
                 "img": "../Images/Recipes/9_Steamed_Fruit.webp"
             },
             {
                 "id": 10,
                 "name": "Steamed Tomatoes",
                 "text": "",
-                "price": "",
+                "price": 14,
                 "img": "../Images/Recipes/10_Steamed_Tomatoes.webp"
             },
             {
                 "id": 11,
                 "name": "Steamed Mushrooms",
                 "text": "",
-                "price": "",
+                "price": 15,
                 "img": "../Images/Recipes/11_Steamed_Mushrooms.webp"
             }
         ]
@@ -88,80 +88,8 @@
                 "id": 134,
                 "name": "Noble Pursuit",
                 "text": "A popular fruit juice in Gerudo Town. Its tropical flavor will cheer you right up.",
-                "price": "",
+                "price": 16,
                 "img": "../Images/Recipes/134_Noble_Pursuit.webp"
-            }
-        ]
-    },
-    {
-        "nome": "Desserts",
-        "itens": [
-            {
-                "id": "",
-                "name": "",
-                "text": "",
-                "price": "",
-                "img": ""
-            }
-        ]
-    },
-    {
-        "nome": "Assados",
-        "itens": [
-            {
-                "id": "",
-                "name": "",
-                "text": "",
-                "price": "",
-                "img": ""
-            }
-        ]
-    },
-    {
-        "nome": "Congelados",
-        "itens": [
-            {
-                "id": "",
-                "name": "",
-                "text": "",
-                "price": "",
-                "img": ""
-            }
-        ]
-    },
-    {
-        "nome": "Sopas",
-        "itens": [
-            {
-                "id": "",
-                "name": "",
-                "text": "",
-                "price": "",
-                "img": ""
-            }
-        ]
-    },
-    {
-        "nome": "Elixires",
-        "itens": [
-            {
-                "id": "",
-                "name": "",
-                "text": "",
-                "price": "",
-                "img": ""
-            }
-        ]
-    },
-    {
-        "nome": "Especiais",
-        "itens": [
-            {
-                "id": "",
-                "name": "",
-                "text": "",
-                "price": "",
-                "img": ""
             }
         ]
     }

@@ -1,108 +1,134 @@
-
-function comecar(){
-    var name = document.getElementById("exampleFormControlInput1").value;
-
-    show(name);
-}
-
-function show(name){
-    document.getElementById("nomePrint").textContent = name;
-    var div = document.getElementById("selects-div");
-    if(name && name.trim() !== ""){
-        div.style.display = "flex";
-        document.getElementById("exampleFormControlInput1").style.background = "none";
-    }else{
-        document.getElementById("error").style.display = "flex";
-        div.style.display = "none";
-    }
-}
-
 function fechar(){
     document.getElementById("error").style.display = "none";
     document.getElementById("exampleFormControlInput1").style.background = "lightpink";
 }
 
-function calcularTotal(){
-    var selectPratos = document.getElementById("select_pratos");
-    var selectBebidas = document.getElementById("select_bebidas");
-    var selectSobremesas = document.getElementById("select_sobremesas");
-    var resultadoSpan = document.getElementById("resultado");
+function limparSelecao() {
+    if(confirm("Você tem certeza que quer limpar sua sacola?")) {
+        localStorage.setItem('sacola', '[]');
+        hydrate();
+    }
+}
+
+function fazerPedido() {
+    var sacolaRaw = localStorage.getItem('sacola');
+    if (sacolaRaw === null) {
+        sacolaRaw = "[]";
+    }
+    var sacola = JSON.parse(sacolaRaw);
+    
+    var listaPedidos = "";
+
+    sacola.forEach(item => {
+        listaPedidos += `${item.nome} - R$ ${item.preco.toFixed(2)};`;
+        listaPedidos += ' ';
+    });
+
+    // Swal.fire({
+    //     title: "Pedido Realizado!",
+    //     html: `${listaPedidos.replaceAll(';', '<br>')}<br><br> Preço: R$ ${calcularTotal().toFixed(2)}`,
+    //     type: 'success',
+    //     didClose: () => {location.assign(encodeURI(`https://wa.me/+5541999999999?text=${listaPedidos} | Total: ${calcularTotal().toFixed(2)} | Pedido feito ${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()} às ${new Date().getHours()}:${new Date().getMinutes()} por ${localStorage.getItem('nome')}`))}
+    // }); 
+}
+
+const calcularTotal = () => {
+    var sacolaRaw = localStorage.getItem('sacola');
+    if (sacolaRaw === null) {
+        sacolaRaw = "[]";
+    }
+    var sacola = JSON.parse(sacolaRaw);
 
     var total = 0;
-    var pratos = 0;
-    var bebidas = 0;
-    var sobremesas = 0;
+    sacola.forEach(item => {
+        total += item.price
+    })
 
-    switch(selectPratos.value){
-        case "Omelet":
-            total += 12;
-            pratos = 12;
-            break;
-        case "Hylian Tomato Pizza":
-            total += 12;
-            pratos = 12;
-            break;
-        case "Mushroom Risotto":
-            total += 12;
-            pratos = 12;
-            break;
-        case "Curry Rice":
-            total += 12;
-            pratos = 12;
-            break;
-    }
+    document.querySelectorAll('.total-content').forEach(elm => {
+        elm.textContent = "R$ "+total.toFixed(2);
+    })
 
-    switch(selectBebidas.value){
-        case "Noble Pursuit":
-            total += 12;
-            bebidas = 12;
-            break;
-        case "Fairy Tonic":
-            total += 12;
-            bebidas = 12;
-            break;
-        case "Energizing Elixir":
-            total += 12;
-            bebidas = 12;
-            break;
-        case "Milk":
-            total += 12;
-            bebidas = 12;
-            break;
-    }
-
-    switch(selectSobremesas.value){
-        case "Apple Pie":
-            total += 12;
-            sobremesas = 12;
-            break;
-        case "Monster Cake":
-            total += 12;
-            sobremesas = 12;
-            break;
-        case "Fruitcake":
-            total += 12;
-            sobremesas = 12;
-            break;
-        case "Rock Hard Food":
-            total += 12;
-            sobremesas = 12;
-            break;
-    }
-
-    resultadoSpan.textContent = `R$ ${total.toFixed(2)}`
-    document.getElementById("prato-pronto").innerHTML = pratos.toFixed(2);
-    document.getElementById("bebidas-pronto").innerHTML = bebidas.toFixed(2);
-    document.getElementById("sobremesas-pronto").innerHTML = sobremesas.toFixed(2);
+    return total;
 }
 
-const limpar = () => {
-    document.getElementById("exampleFormControlInput1").value = "";
-    document.getElementById("resultado").textContent = "";
-    document.getElementById("select_pratos").value = "Selecione um prato";
-    document.getElementById("select_bebidas").value = "Selecione uma bebida";
-    document.getElementById("select_sobremesas").value = "Selecione uma sobremesa";
-    document.getElementById("prato-pronto").textContent = "";
-    document.getElementById("bebidas-pronto").textContent = "";
-    document.getElementById("sobremesas-pronto").textContent = "";
+const orderRender = () => {
+
+    var sacolaRaw = localStorage.getItem('sacola');
+    if (sacolaRaw === null) {
+        sacolaRaw = "[]";
+    }
+    var sacola = JSON.parse(sacolaRaw);
+
+    var itemListDiv = document.querySelector('.item-list');
+    itemListDiv.innerHTML = "";
+
+    var itemi = -1;
+    sacola.forEach(item => {
+        itemi += 1;
+
+        var itemDiv = document.createElement('div'); // itemDiv
+        itemDiv.classList.add('item-div');
+
+        itemDeleteWrap = document.createElement('button');
+        itemDeleteWrap.classList.add('btn');
+        itemDeleteWrap.classList.add('btn-outline-danger');
+        itemDeleteWrap.classList.add('item-delete-btn');
+        itemDeleteWrap.setAttribute('data-item-id', itemi);
+        itemDeleteWrap.setAttribute('onclick', 'itemBtnDelete(this)');
+
+        itemDeleteBtn = document.createElement('span')
+        itemDeleteBtn.classList.add('material-symbols-outlined')
+        itemDeleteBtn.textContent = "delete";
+        itemDeleteBtn.onclick = function () { itemDiv.remove() }
+        
+        itemDeleteWrap.appendChild(itemDeleteBtn)
+        itemDiv.appendChild(itemDeleteWrap);
+
+        itemImg = document.createElement('img'); /// itemImg
+        itemImg.classList.add('item-img');
+        itemImg.src = item.img;
+        itemDiv.appendChild(itemImg);           /// \itemImg
+
+        itemInfo = document.createElement('div'); /// itemInfo
+        itemInfo.classList.add('item-info');
+
+        itemNome = document.createElement('h5');    //// itemNome
+        itemNome.classList.add('item-nome');
+        itemNome.textContent = item.name;
+        itemInfo.appendChild(itemNome);              //// \itemNome
+
+        itemPreco = document.createElement('p');    //// itemPreco
+        itemPreco.classList.add('item-preco');
+        itemPreco.textContent = "R$ "+item.price.toFixed(2);
+        itemInfo.appendChild(itemPreco);            //// \itemPreco
+        
+        itemDiv.appendChild(itemInfo);          /// \itemInfo
+        itemListDiv.appendChild(itemDiv);
+    })
+
+    calcularTotal();
+
 }
+
+
+window.addEventListener('load', ()=>{
+
+    orderRender();
+    
+    if (localStorage.getItem('nome') === null) {
+        var nameInputDiv = document.querySelector('.nomeinput-div');
+        nameInputDiv.classList.remove('hidden');
+        
+        // var pedidoDiv = document.querySelector('.pedido-div');
+        // pedidoDiv.classList.add('hidden');
+    } else {
+
+        var nameInputDiv = document.querySelector('.nomeinput-div');
+        nameInputDiv.classList.add('hidden');
+        
+        document.querySelector('#nome-print').textContent = localStorage.getItem('nome');
+        
+        // var pedidoDiv = document.querySelector('.pedido-div');
+        // pedidoDiv.classList.remove('hidden');
+    }
+})
