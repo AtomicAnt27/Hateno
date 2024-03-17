@@ -1,6 +1,6 @@
 [
     {
-        "nome": "Pratos",
+        "nome": "Dishes",
         "itens": [
             {
                 "id": 1,
@@ -21,68 +21,68 @@
                 "name": "Fish and Mushroom Skewer",
                 "text": "A simple dish made by cooking skewered fresh fish alongside fragrant mushrooms.",
                 "price": "",
-                "img": "..Images/Recipes/3_Fish_and_Mushroom_Skewer.webp"
+                "img": "../Images/Recipes/3_Fish_and_Mushroom_Skewer.webp"
             },
             {
                 "id": 4,
                 "name": "Meat Skewer",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/4_Meat_Skewer.webp"
+                "img": "../Images/Recipes/4_Meat_Skewer.webp"
             },
             {
                 "id": 5,
                 "name": "Fish Skewer",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/5_Fish_Skewer.webp"
+                "img": "../Images/Recipes/5_Fish_Skewer.webp"
             },
             {
                 "id": 6,
                 "name": "Seafood Skewer",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/6_Seafood_Skewer.webp"
+                "img": "../Images/Recipes/6_Seafood_Skewer.webp"
             },
             {
                 "id": 7,
                 "name": "Copious Meat Skewers",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/7_Copious_Meat_Skewers.webp"
+                "img": "../Images/Recipes/7_Copious_Meat_Skewers.webp"
             },
             {
                 "id": 8,
                 "name": "Copious Seafood Skewers",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/8_Copious_Seafood_Skewers.webp"
+                "img": "../Images/Recipes/8_Copious_Seafood_Skewers.webp"
             },
             {
                 "id": 9,
                 "name": "Steamed Fruit",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/9_Steamed_Fruit.webp"
+                "img": "../Images/Recipes/9_Steamed_Fruit.webp"
             },
             {
                 "id": 10,
                 "name": "Steamed Tomatoes",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/10_Steamed_Tomatoes.webp"
+                "img": "../Images/Recipes/10_Steamed_Tomatoes.webp"
             },
             {
                 "id": 11,
                 "name": "Steamed Mushrooms",
                 "text": "",
                 "price": "",
-                "img": "..Images/Recipes/11_Steamed_Mushrooms.webp"
+                "img": "../Images/Recipes/11_Steamed_Mushrooms.webp"
             }
         ]
     },
     {
-        "nome": "Bebidas",
+        "nome": "Drinks",
         "itens": [
             {
                 "id": 134,
@@ -94,7 +94,7 @@
         ]
     },
     {
-        "nome": "Sobremesas",
+        "nome": "Desserts",
         "itens": [
             {
                 "id": "",

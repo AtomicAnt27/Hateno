@@ -1,86 +1,100 @@
-// function muda_cardapio(n) {
-//     var cardapios = document.querySelectorAll('.cardapio');
+function muda_cardapio(btn) {
+    var n = btn.getAttribute('data-cardapio-id');
+    var cardapios = document.querySelectorAll('.cardapio');
 
-//     cardapios.forEach(cardapio => {
-//         cardapio.classList.add('hidden');
-//     });
+    cardapios.forEach(cardapio => {
+        cardapio.classList.add('hidden');
+    });
 
-//     cardapios[n].classList.remove('hidden');
-// }
+    cardapios[n].classList.remove('hidden');
+}
 
-// function refresh() {
-//     var cardapios = document.querySelectorAll('.cardapio');
-//     cardapios.forEach(cardapio => {
-//         cardapio.classList.remove('hidden');
-//     });
-// }
+function refresh() {
+    var cardapios = document.querySelectorAll('.cardapio');
+    cardapios.forEach(cardapio => {
+        cardapio.classList.remove('hidden');
+    });
+}
 
-const cardapioRender = async() => {
-    module = await (await fetch("./content.json")).json();
-    console.log(module);
+const cardapioRender = async () => {
+    let data = await (await fetch("./content.json")).json();
+    console.log(data);
 
-    wrapEverything = document.createElement('div');
+    var wrapEverything = document.createElement('div');
     wrapEverything.classList.add('wrap-everything');
     document.body.appendChild(wrapEverything);
 
-    contentDiv = document.createElement('div');
+    var contentDiv = document.createElement('div');
     contentDiv.classList.add('content');
     wrapEverything.appendChild(contentDiv);
 
-    var i = -1;
-    module.forEach(categoria => {
-        i += 1;
-    
-        console.log("Categoria: ", categoria.nome, categoria.itens);
+    var cardapioTitle = document.createElement('h1');
+    cardapioTitle.classList.add('cardapio-title');
+    cardapioTitle.textContent = "CARDAPIO"
+    contentDiv.appendChild(cardapioTitle)
 
-        cardapioDiv = document.createElement('div');
+    var cardapioSwitcher = document.createElement('div');
+    cardapioSwitcher.classList.add('btn-group');
+    cardapioSwitcher.setAttribute('role', 'group');
+    cardapioSwitcher.setAttribute('aria-label', 'Basic radio toggle button group');
+    contentDiv.appendChild(cardapioSwitcher);
+
+    var btnRefreshCardapio = document.createElement('input');
+    btnRefreshCardapio.classList.add('btn-check');
+    btnRefreshCardapio.setAttribute('type', 'radio');
+    btnRefreshCardapio.setAttribute('name', 'cardapio');
+    btnRefreshCardapio.setAttribute('autocomplete', 'off');
+    btnRefreshCardapio.setAttribute('checked', 'checked');
+    btnRefreshCardapio.id = "btncardapio_refresh";
+    btnRefreshCardapio.addEventListener('click', refresh);
+    cardapioSwitcher.appendChild(btnRefreshCardapio);
+
+    var btnRefreshCardapioLabel = document.createElement('label');
+    btnRefreshCardapioLabel.classList.add('btn');
+    btnRefreshCardapioLabel.classList.add('btn-outline-dark');
+    btnRefreshCardapioLabel.classList.add('material-symbols-outlined');
+    btnRefreshCardapioLabel.textContent = "add";
+    btnRefreshCardapioLabel.setAttribute('for', 'btncardapio_refresh');
+    cardapioSwitcher.appendChild(btnRefreshCardapioLabel);
+
+    var i = -1;
+    data.forEach(categoria => {
+        i += 1;
+
+        var cardapioDiv = document.createElement('div');
         cardapioDiv.classList.add('cardapio');
 
-        wrapCardsDiv = document.createElement('div')
+        var wrapCardsDiv = document.createElement('div')
         wrapCardsDiv.classList.add('wrap-cards')
         categoria.itens.forEach(item => {
-            cardDiv = document.createElement('div')
+            var cardDiv = document.createElement('div')
             cardDiv.classList.add('card');
 
-            cardImg = document.createElement('img');
+            var cardImg = document.createElement('img');
             cardImg.classList.add('card-img-top');
             cardImg.src = item.img;
             cardDiv.appendChild(cardImg);
 
-            cardBody = document.createElement('div');
+            var cardBody = document.createElement('div');
             cardBody.classList.add('card-body');
-            
-            cardTitle = document.createElement('h5');
+
+            var cardTitle = document.createElement('h5');
             cardTitle.classList.add('card-title');
             cardTitle.textContent = item.name;
             cardBody.appendChild(cardTitle);
 
-            cardText = document.createElement('p');
+            var cardText = document.createElement('p');
             cardText.classList.add('card-text');
             cardText.textContent = item.text;
             cardBody.appendChild(cardText);
 
-            cardButtonGroup = document.createElement('div');
-            cardButtonGroup.classList.add('btn-group');
-            cardButtonGroup.classList.add('btn-group-card');
-            cardButtonGroup.setAttribute('role', 'group');
-            cardButton = document.createElement('a');
+            var cardButton = document.createElement('a');
+            cardButton.classList.add('cardBtn');
             cardButton.classList.add('btn');
-            cardButton.classList.add('btn-danger');
-            cardButton.onclick = () => {adicionarSacola(item)};
-            cardButtonIcon = document.createElement('span');
-            cardButtonIcon.classList.add('material-symbols-outlined');
-            cardButtonIcon.textContent = "add"
-            cardButton.appendChild(cardButtonIcon);
-            cardButton.innerHTML += "Adicionar na Sacola";
-            cardPriceBadge = document.createElement('div');
-            cardPriceBadge.classList.add('item-price');
-            cardPriceBadge.classList.add('badge');
-            cardPriceBadge.classList.add('text-bg-light');
-            cardPriceBadge.textContent = `R$ ${item.preco.toFixed(2)}`;
-            cardButtonGroup.appendChild(cardButton);
-            cardButtonGroup.appendChild(cardPriceBadge);
-            cardBody.appendChild(cardButtonGroup);
+            cardButton.classList.add('btn-primary');
+            cardButton.textContent = "+ Add to order"
+            cardButton.onclick = () => { adicionarSacola(item) };
+            cardBody.appendChild(cardButton);
 
             cardDiv.appendChild(cardBody);
 
@@ -89,6 +103,24 @@ const cardapioRender = async() => {
         cardapioDiv.appendChild(wrapCardsDiv);
 
         contentDiv.appendChild(cardapioDiv);
+
+        var btnMudaCardapio = document.createElement('input');
+        btnMudaCardapio.classList.add('btn-check');
+        btnMudaCardapio.setAttribute('type', 'radio');
+        btnMudaCardapio.setAttribute('name', 'cardapio');
+        btnMudaCardapio.setAttribute('autocomplete', 'off');
+        btnMudaCardapio.id = "btncardapio_" + categoria.nome;
+        btnMudaCardapio.setAttribute('data-cardapio-id', i);
+        btnMudaCardapio.addEventListener('click', function () {
+            muda_cardapio(this);
+        });
+        cardapioSwitcher.appendChild(btnMudaCardapio);
+        var btnMudaCardapioLabel = document.createElement('label');
+        btnMudaCardapioLabel.classList.add('btn');
+        btnMudaCardapioLabel.classList.add('btn-outline-dark');
+        btnMudaCardapioLabel.textContent = categoria.nome;
+        btnMudaCardapioLabel.setAttribute('for', 'btncardapio_' + categoria.nome);
+        cardapioSwitcher.appendChild(btnMudaCardapioLabel);
     })
 }
 window.addEventListener('load', cardapioRender);
