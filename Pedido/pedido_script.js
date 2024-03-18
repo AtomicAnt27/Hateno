@@ -1,3 +1,5 @@
+var itemDiv;
+
 function fechar(){
     document.getElementById("error").style.display = "none";
     document.getElementById("exampleFormControlInput1").style.background = "lightpink";
@@ -6,7 +8,7 @@ function fechar(){
 function limparSelecao() {
     if(confirm("Você tem certeza que quer limpar sua sacola?")) {
         localStorage.setItem('sacola', '[]');
-        hydrate();
+        orderRender();
     }
 }
 
@@ -23,13 +25,6 @@ function fazerPedido() {
         listaPedidos += `${item.nome} - R$ ${item.preco.toFixed(2)};`;
         listaPedidos += ' ';
     });
-
-    // Swal.fire({
-    //     title: "Pedido Realizado!",
-    //     html: `${listaPedidos.replaceAll(';', '<br>')}<br><br> Preço: R$ ${calcularTotal().toFixed(2)}`,
-    //     type: 'success',
-    //     didClose: () => {location.assign(encodeURI(`https://wa.me/+5541999999999?text=${listaPedidos} | Total: ${calcularTotal().toFixed(2)} | Pedido feito ${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()} às ${new Date().getHours()}:${new Date().getMinutes()} por ${localStorage.getItem('nome')}`))}
-    // }); 
 }
 
 const calcularTotal = () => {
@@ -69,35 +64,37 @@ const orderRender = () => {
         var itemDiv = document.createElement('div'); // itemDiv
         itemDiv.classList.add('item-div');
 
-        itemDeleteWrap = document.createElement('button');
+        var itemDeleteWrap = document.createElement('button');
         itemDeleteWrap.classList.add('btn');
         itemDeleteWrap.classList.add('btn-outline-danger');
         itemDeleteWrap.classList.add('item-delete-btn');
         itemDeleteWrap.setAttribute('data-item-id', itemi);
-        itemDeleteWrap.setAttribute('onclick', 'itemBtnDelete(this)');
+        itemDeleteWrap.setAttribute('onclick', 'itemDeleteBtn(this)');
 
-        itemDeleteBtn = document.createElement('span')
+        var itemDeleteBtn = document.createElement('span')
         itemDeleteBtn.classList.add('material-symbols-outlined')
         itemDeleteBtn.textContent = "delete";
-        itemDeleteBtn.onclick = function () { itemDiv.remove() }
+        itemDeleteBtn.onclick = function () {
+            itemDiv.remove();
+        };
         
         itemDeleteWrap.appendChild(itemDeleteBtn)
         itemDiv.appendChild(itemDeleteWrap);
 
-        itemImg = document.createElement('img'); /// itemImg
+        var itemImg = document.createElement('img'); /// itemImg
         itemImg.classList.add('item-img');
         itemImg.src = item.img;
         itemDiv.appendChild(itemImg);           /// \itemImg
 
-        itemInfo = document.createElement('div'); /// itemInfo
+        var itemInfo = document.createElement('div'); /// itemInfo
         itemInfo.classList.add('item-info');
 
-        itemNome = document.createElement('h5');    //// itemNome
+        var itemNome = document.createElement('h5');    //// itemNome
         itemNome.classList.add('item-nome');
         itemNome.textContent = item.name;
         itemInfo.appendChild(itemNome);              //// \itemNome
 
-        itemPreco = document.createElement('p');    //// itemPreco
+        var itemPreco = document.createElement('p');    //// itemPreco
         itemPreco.classList.add('item-preco');
         itemPreco.textContent = "R$ "+item.price.toFixed(2);
         itemInfo.appendChild(itemPreco);            //// \itemPreco
@@ -110,25 +107,18 @@ const orderRender = () => {
 
 }
 
-
 window.addEventListener('load', ()=>{
 
     orderRender();
     
-    if (localStorage.getItem('nome') === null) {
-        var nameInputDiv = document.querySelector('.nomeinput-div');
-        nameInputDiv.classList.remove('hidden');
-        
-        // var pedidoDiv = document.querySelector('.pedido-div');
-        // pedidoDiv.classList.add('hidden');
-    } else {
+    // if (localStorage.getItem('nome') === null) {
+    //     var nameInputDiv = document.querySelector('.nomeinput-div');
+    //     nameInputDiv.classList.remove('hidden');
+    // } else {
 
-        var nameInputDiv = document.querySelector('.nomeinput-div');
-        nameInputDiv.classList.add('hidden');
+    //     var nameInputDiv = document.querySelector('.nomeinput-div');
+    //     nameInputDiv.classList.add('hidden');
         
-        document.querySelector('#nome-print').textContent = localStorage.getItem('nome');
-        
-        // var pedidoDiv = document.querySelector('.pedido-div');
-        // pedidoDiv.classList.remove('hidden');
-    }
+    //     document.querySelector('#nome-print').textContent = localStorage.getItem('nome');
+    // }
 })

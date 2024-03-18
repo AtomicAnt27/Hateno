@@ -66,14 +66,12 @@ const calcularTotal = () => {
 
     var total = 0;
     sacola.forEach(item => {
-        total += item.price; // Certifique-se de que o campo price está sendo acessado corretamente
+        total += item.price;
     });
 
     document.querySelectorAll('.total-content').forEach(elm => {
         elm.textContent = "R$ " + total.toFixed(2);
     });
-
-    console.log(total); // Verifique se o total está sendo calculado corretamente
 
     return total;
 }
@@ -82,7 +80,6 @@ const cardapioRender = async () => {
     if (localStorage.getItem('nome') !== null) {
         document.querySelector('#nome-print').textContent = localStorage.getItem('nome');
     }
-
 
     try {
         const response = await fetch("./content.json");
@@ -166,7 +163,7 @@ const cardapioRender = async () => {
                 cardBody.appendChild(cardText);
 
                 var cardButtonContainer = document.createElement('div');
-                cardButtonContainer.classList.add('.card-button-container');
+                cardButtonContainer.classList.add('card-button-container');
                 var cardButton = document.createElement('a');
                 cardButton.classList.add("btn", "btn-primary", "cardBtn");
                 cardButton.textContent = "+ Add to order"
